@@ -1,0 +1,22 @@
+import torch 
+import torch.nn as nn
+import torch.nn.functional as F
+
+
+class ResNet50(nn.Module):
+    def __init__(self):
+        super(ResNet50, self).init()
+        self.conv1 = nn.Conv2d(in_channels=3, out_channels=64, kernel_size=7, stride=2,padding = 3)
+        #nn.MaxPool2d(3, stride=2)
+        self.model = nn.Sequential(
+            nn.Conv2d()
+        )
+
+
+    model = nn.Sequential(
+          nn.Conv2d(1,20,5),
+          nn.ReLU(),
+          nn.Conv2d(20,64,5),
+          nn.ReLU()
+        )
+    
