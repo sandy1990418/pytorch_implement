@@ -16,13 +16,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 
-
-
-### MNIST DATASET
-
-
-# Note transforms.ToTensor() scales input images
-# to 0-1 range
+## using mnist
 train_dataset = datasets.MNIST(root='data',
                                train=True,
                                transform=transforms.ToTensor(),
