@@ -35,7 +35,34 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 
+##########################
+##########################
 
+# using Cifar10 
+
+train_dataset = datasets.CIFAR10(root='data',
+                               train=True,
+                               transform=transforms.ToTensor(),
+                               download=True)
+
+test_dataset = datasets.CIFAR10(root='data',
+                              train=False,
+                              transform=transforms.ToTensor())
+
+
+train_loader = DataLoader(dataset=train_dataset,
+                          batch_size=64,
+                          shuffle=True)
+
+test_loader = DataLoader(dataset=test_dataset,
+                         batch_size=64,
+                         shuffle=False)
+
+# Checking the dataset
+for images, labels in train_loader:
+    print('Image batch dimensions:', images.shape)
+    print('Image label dimensions:', labels.shape)
+    break
 
 
 class Bottleneck(nn.Module):
