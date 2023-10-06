@@ -48,7 +48,7 @@ class ResNet50(nn.Module):
     ## combine layers 
     def make_layer(self,bottleneck,use_channel,number_iteration,stride):
         ## create list (append and create list)
-        strides = [stride]+[1]*(numer_iteration-1)
+        strides = [stride]+[1]*(number_iteration-1)
         ## create empty list
         layers =[]
         for stride in strides:
