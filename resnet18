@@ -16,6 +16,41 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 
+
+
+### MNIST DATASET
+
+
+# Note transforms.ToTensor() scales input images
+# to 0-1 range
+train_dataset = datasets.MNIST(root='data',
+                               train=True,
+                               transform=transforms.ToTensor(),
+                               download=True)
+
+test_dataset = datasets.MNIST(root='data',
+                              train=False,
+                              transform=transforms.ToTensor())
+
+
+train_loader = DataLoader(dataset=train_dataset,
+                          batch_size=32,
+                          shuffle=True)
+
+test_loader = DataLoader(dataset=test_dataset,
+                         batch_size=32,
+                         shuffle=False)
+
+# Checking the dataset
+for images, labels in train_loader:
+    print('Image batch dimensions:', images.shape)
+    print('Image label dimensions:', labels.shape)
+    break
+
+
+
+### model construct ###
+
 class Bottleneck(nn.Module):
     def __init__(self,in_channel,out_channel,stride=1):
         super(Bottleneck,self).__init__()
@@ -85,11 +120,19 @@ class ResNet18(nn.Module):
 
 
 
-DEVICE ='gpu' if torch.cuda.is_available()==True  else 'cpu'
+
+device ='gpu' if torch.cuda.is_available()==True  else 'cpu'
 
 
 def ResNet():
-    return ResNet18(Bottleneck)
+    return ResNet18(Bottleneck,10)
+
+#define loss funtion & optimizer
+criterion = nn.CrossEntropyLoss()
+model =ResNet()
+optimizer = torch.optim.SGD(model.parameters(), lr=0.01, momentum=0.9, weight_decay=5e-4)
+
+
 
 
 #train
@@ -137,3 +180,4 @@ for epoch in range(EPOCH):
         print('Test\'s ac is: %.3f%%' % (100 * correct / total))
 
 print('Train has finished, total epoch is %d' % EPOCH)
+
