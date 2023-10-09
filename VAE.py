@@ -119,7 +119,6 @@ class VAE(nn.Module):
         return z,mu,var
     
 
-
 device ='gpu' if torch.cuda.is_available()==True  else 'cpu'
 
 
@@ -131,8 +130,7 @@ def loss_function(x, x_hat, mean, log_var):
 
 #define loss funtion & optimizer
 model =VAE(3,[16,32,64],[64,32,16],4)
-optimizer = torch.optim.Adam(model.parameters(), lr=0.01, weight_decay=5e-4) #, momentum=0.9
-
+optimizer = torch.optim.SGD(model.parameters(), lr=0.001, weight_decay=5e-4, momentum=0.9) #
 
 #train
 EPOCH=2
