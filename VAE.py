@@ -34,6 +34,9 @@ from torchvision import transforms
 import matplotlib.pyplot as plt
 from PIL import Image
 
+## reference :https://github.com/CaptainDredge/Variational-AutoEncoder-in-Pytorch/blob/master/train.py
+
+
 ## using Cifar10 
 btsize=64
 
@@ -97,13 +100,6 @@ class VAE(nn.Module):
                 nn.Sigmoid())
         
     def reparameterize(self, mu, logvar) :
-        """
-        Reparameterization trick to sample from N(mu, var) from
-        N(0,1).
-        :param mu: (Tensor) Mean of the latent Gaussian [B x D]
-        :param logvar: (Tensor) Standard deviation of the latent Gaussian [B x D]
-        :return: (Tensor) [B x D]
-        """
         std = torch.exp(0.5 * logvar)
         eps = torch.randn_like(std)
         return eps * std + mu
