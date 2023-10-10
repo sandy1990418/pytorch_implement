@@ -35,7 +35,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 ## reference :https://github.com/CaptainDredge/Variational-AutoEncoder-in-Pytorch/blob/master/train.py
-
+## reference2:https://hackmd.io/@EUSQi8vWTzuCNlcbMQ_lXw/ry8kn7Fc?type=view
 
 ## using mnist
 btsize=50
